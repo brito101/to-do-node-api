@@ -1,30 +1,30 @@
 import { Model, DataTypes } from "sequelize"
 import { sequelize } from "../instances/mysql"
 
-export interface UserInstance extends Model {
+export interface TodoInstance extends Model {
   id: number
-  email: string
-  password: string
+  title: string
+  done: boolean
 }
 
-export const User = sequelize.define<UserInstance>(
-  "User",
+export const Todo = sequelize.define<TodoInstance>(
+  "Todo",
   {
     id: {
       primaryKey: true,
       autoIncrement: true,
       type: DataTypes.INTEGER,
     },
-    email: {
+    title: {
       type: DataTypes.STRING,
-      unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
+    done: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
-    tableName: "users",
+    tableName: "todos",
     timestamps: false,
   }
 )
